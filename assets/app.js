@@ -19,6 +19,7 @@ const statusItem = $('.status-item')
 const selectStatus = $('.status')
 const lists = document.querySelectorAll('.list');
 const statusLists = document.querySelectorAll('.status-list')
+const textForm = document.querySelector('.text-form')
 let dragItem = {}
 
 let listItem = []
@@ -123,6 +124,7 @@ const valueItemToInput = () => {
 }
 
 function openFormUpdate() {
+    textForm.innerHTML = 'Edit todo'
     modal.classList.remove('hidden')
     modal.classList.add('flex')
     statusItem.classList.remove('hidden')
