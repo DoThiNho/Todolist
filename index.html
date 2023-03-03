@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    
+    <style>
+        html {
+            font-family: "Roboto", sans-serif;
+        }
+
+        .card.dragging {
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body class="flex justify-center relative">
+    <div class="w-[84%] pt-5">
+        <div class="flex flex-col items-center lg:flex-row lg:items-end justify-between gap-5">
+            <div>
+                <img src="./assets/image/logo.png" class="w-[171px] h-[58px]" alt="">
+                <div class="flex justify-between">
+                    <div class="flex gap-2">
+                        <div class="text-[16px]">Let's get shit done</div>
+                        <img src="./assets/image/hello.png" class="w-[23px] aspect-square" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="open-modal flex items-end lg:border-none border border-[#ccc] p-2 gap-2 text-[#5A5C63] cursor-pointer">
+                <i class=" fa-solid fa-plus mb-1"></i>
+                <div>New task</div>
+            </div>
+        </div>
+        <div class="lg:flex justify-between mt-5">
+            <div class="flex flex-col gap-4 lg:w-[376px] w-full mt-3 lg:mt-0">
+                <div class="status-list flex justify-between items-center h-[34px] bg-[#00A6DA] rounded px-2 cursor-pointer ">
+                    <div class="text-white">Todo</div>
+                    <div class="todo-count w-5 h-5 flex items-center justify-center text-white bg-[#00CDDA] rounded">3</div>
+                </div>
+                <div class="h-[0.5px] border border-[#00A6DA]"></div>
+                
+                <div class="list lg:min-h-[100px] max-h-[450px] todo todo-items flex flex-col gap-4 overflow-auto transition duration-200 ease-out" value="todo">
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 lg:w-[376px] w-full mt-3 lg:mt-0">
+                <div class="status-list flex justify-between items-center bg-[#ccac038f] h-[34px]  rounded px-2 cursor-pointer">
+                    <div class="text-white">Doing</div>
+                    <div class="doing-count w-5 h-5 flex items-center justify-center text-white bg-[#DAB700] rounded">3</div>
+                </div> 
+                <div class="h-[0.5px] border border-[#DAB700]"></div>
+                <div class="list lg:min-h-[100px] max-h-[450px] doing todo-items flex flex-col gap-4 overflow-auto transition duration-200 ease-out" value="doing">
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 lg:w-[376px] w-full mt-3 lg:mt-0">
+                <div class="status-list flex justify-between items-center h-[34px] bg-[#3BC057] rounded px-2 cursor-pointer">
+                    <div class="text-white">Finished</div>
+                    <div class="finished-count w-5 h-5 flex items-center justify-center text-white bg-[#69CE7E] rounded">3</div>
+                </div>
+                <div class="h-[0.5px] border border-[#69CE7E]"></div>
+                <div class="list lg:min-h-[100px] max-h-[450px] finished todo-items flex flex-col gap-4 overflow-auto transition duration-200 ease-out" value="finished">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal w-full h-full fixed bg-[#00000066] hidden justify-center items-center">
+        <div class="lg:w-[30%] w-[70%] boder bg-white relative p-5 rounded">
+            <div class="text-center text-[#6f6d6f]">
+                <div class="text-xl font-bold">Add new todo</div>
+                <button class="btn-close absolute top-2 right-2 ">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form class="flex flex-col gap-3 mt-5 form-add">
+                <input class="input-text w-full border border-black rounded p-1" type="text" name="" id="" placeholder="Category. Etc: Marketing...">
+                <input class="input-text w-full border border-black rounded p-1" type="text" name="" id="" placeholder="Title">
+                <textarea class="input-text w-full border border-black rounded p-1" name="" id="" cols="30" rows="4" placeholder="Content"></textarea>
+                <div class="status-item hidden">
+                    <select class="status flex w-full items-center justify-between rounded border border-[#000] p-1">
+                        <option value="todo">To do</option>
+                        <option value="doing" >Doing</option>
+                        <option value="finished">Finished</option>
+                    </select>
+                </div>
+                <input class="w-full bg-[#edebed] border border-black rounded p-1 cursor-pointer" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script src="./assets/app.js"></script>
+</body>
+</html>
